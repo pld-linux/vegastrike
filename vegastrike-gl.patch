@@ -1,0 +1,20 @@
+--- vegastrike-0.1.0/src/gldrv/gl_globals.h.orig	Mon Nov  5 11:23:41 2001
++++ vegastrike-0.1.0/src/gldrv/gl_globals.h	Thu Aug 28 13:06:33 2003
+@@ -91,6 +91,7 @@
+ 
+ #else // WIN32
+ 
++#define GL_GLEXT_PROTOTYPES
+ #include <GL/glut.h>
+ #ifdef GL_EXT_compiled_vertex_array
+ # ifndef PFNGLLOCKARRAYSEXTPROC
+--- vegastrike-0.1.0/src/gldrv/gl_init.cpp.orig	Fri Nov  2 06:26:03 2001
++++ vegastrike-0.1.0/src/gldrv/gl_init.cpp	Thu Aug 28 12:48:15 2003
+@@ -25,6 +25,7 @@
+ //#include "gl_globals.h"
+ 
+ #ifndef WIN32
++#   define GLX_GLXEXT_PROTOTYPES
+ #   include <GL/glx.h>
+ #include <stdlib.h>
+ #include "gfxlib.h"
