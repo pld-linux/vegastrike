@@ -1,0 +1,50 @@
+diff -ur vegastrike/src/Makefile.am vegastrike.build/src/Makefile.am
+--- vegastrike/src/Makefile.am	2004-04-25 11:51:05.000000000 +0200
++++ vegastrike.build/src/Makefile.am	2004-05-01 22:58:26.436843336 +0200
+@@ -1,5 +1,5 @@
+ 
+-bin_PROGRAMS = vegastrike vegaserver accountserver
++bin_PROGRAMS = vegastrike vegaserver
+ 
+ SUBDIRS = \
+     cmd gfx gldrv aldrv python gui networking boost common boost129
+@@ -47,11 +47,6 @@
+ boost/libboost_python.a	        \
+ -lz
+ 
+-accountserver_LDADD =           \
+-networking/libnetacct.a 		\
+-networking/lowlevel/libnetlowlevel.a \
+--lz
+-
+ 
+ libroot =		\
+ 	debug_vs.h				\
+@@ -152,27 +147,6 @@
+ 	$(librootgeneric) $(librootserver)	\
+ 	vegaserver.cpp
+ 
+-accountserver_SOURCES =		\
+-	vsfilesystem.cpp		\
+-	vsfilesystem.h			\
+-	pk3.cpp					\
+-	pk3.h					\
+-	posh.cpp				\
+-	libserver.cpp			\
+-	configxml.cpp			\
+-	configxml.h				\
+-	easydom.cpp				\
+-	easydom.h				\
+-	xml_support.h  			\
+-	xml_support.cpp			\
+-	lin_time.cpp			\
+-	lin_time.h				\
+-	endianness.cpp			\
+-	endianness.h			\
+-	galaxy_gen.cpp			\
+-	galaxy_gen.h			\
+-	accountserver.cpp
+-
+ vegastrike_SOURCES =		\
+ 	$(librootgeneric) $(libroot) \
+ 	main.cpp
