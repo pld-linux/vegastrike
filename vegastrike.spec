@@ -2,21 +2,22 @@
 # TODO: What about this memleak(?) in 2.6? This game is not playable
 #       on these kernels.
 #
+%define		snap	20040501
 Summary:	Vegastrike - a free 3D space fight simulator
 Summary(pl):	Vegastrike - trójwymiarowy symulator lotu
 Name:		vegastrike
-Version:	0.4.1
-Release:	2
+Version:	0.4.2_%{snap}
+Release:	1
 License:	GPL
 Group:		X11/Applications/Games
-Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}-source.tgz
+Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-source.tgz
 # Source0-md5:	3e3fd9326e4ddb2f3a994c9f73317383
-Source1:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}-data.tgz
+Source1:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-data.tgz
 # Source1-md5:	ba139fa2da7a04b19d485677191855ea
-Source2:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}-setup.tgz
+Source2:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-setup.tgz
 # Source2-md5:	eb910736dad4c2e84c0d016023fa3a5f
 Source3:	vsfinalize
-Patch0:		%{name}-opengl.patch
+Patch0:		%{name}-accountserver.patch
 URL:		http://vegastrike.sourceforge.net
 BuildRequires:	OpenGL-devel-base
 BuildRequires:	SDL_mixer-devel
@@ -67,7 +68,6 @@ wiêc bêdziesz ich potrzebowa³ tylko, kiedy wiesz do czego s³u¿±.
 %prep
 %setup -q -a1 -a2 -n %{name}
 %patch0 -p1
-sed -i 's#^AC_OUTPUT(#AC_OUTPUT(tools/Makefile #' configure.in
 
 %build
 %{__aclocal}
@@ -77,8 +77,8 @@ sed -i 's#^AC_OUTPUT(#AC_OUTPUT(tools/Makefile #' configure.in
 %configure \
 	--enable-net-threads=posix \
 	--enable-flags="%{rpmcflags}" \
-	--with-data-dir="%{_datadir}/%{name}" \
-	--enable-boost-128
+	--with-data-dir="%{_datadir}/%{name}"
+#	--enable-release
 %{__make}
 cd vssetup/src
 perl ./build
@@ -92,17 +92,19 @@ rm -rf $RPM_BUILD_ROOT
 	pkgdatadir=%{_datadir}/%{name}/objconv \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_bindir},%{_datadir}}
+install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_bindir},%{_datadir}/%{name}}
 
 # Makefiles not created - data must be installed manually
-find data -type d -name CVS \
+find data -type d -name 'CVS' \
 	-o -type d -name '.xvpics' \
 	-o -type f -name 'Makefile*' \
 	-o -type f -name '*~*' \
 	-o -type f -name '*.nsi' \
 	-o -type f -name '.#*' \
-	-o -type f -name 'vsinstall' | xargs rm -rf
-cp -rf data $RPM_BUILD_ROOT%{_datadir}/%{name}
+	-o -type f -name 'vsinstall' | sed -e "s/'/\\\'/g" | xargs rm -rf
+
+cp -rf data/* $RPM_BUILD_ROOT%{_datadir}/%{name}/
+cp -rf data/.vegastrike $RPM_BUILD_ROOT%{_datadir}/%{name}/
 
 install vssetup/src/bin/setup $RPM_BUILD_ROOT%{_bindir}/vssetup
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/vsinstall
@@ -123,7 +125,7 @@ EOF
 
 %files
 %defattr(644,root,root,755)
-%doc README AUTHORS ChangeLog TODO
+%doc README AUTHORS ChangeLog ToDo.txt
 %attr(755,root,root) %{_bindir}/vegastrike
 %attr(755,root,root) %{_bindir}/vsinstall
 %attr(755,root,root) %{_bindir}/vssetup
@@ -137,7 +139,7 @@ EOF
 
 %files tools
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/accountserver
+#%attr(755,root,root) %{_bindir}/accountserver
 %attr(755,root,root) %{_bindir}/asteroidgen
 %attr(755,root,root) %{_bindir}/replace
 %attr(755,root,root) %{_bindir}/trisort
