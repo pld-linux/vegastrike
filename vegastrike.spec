@@ -6,7 +6,7 @@ Summary:	Vegastrike - a free 3D space fight simulator
 Summary(pl):	Vegastrike - trójwymiarowy symulator lotu
 Name:		vegastrike
 Version:	0.4.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}-source.tgz
@@ -17,7 +17,6 @@ Source2:	ftp://distfiles.pld-linux.org/src/%{name}-%{version}-setup.tgz
 # Source2-md5:	eb910736dad4c2e84c0d016023fa3a5f
 Source3:	vsfinalize
 Patch0:		%{name}-opengl.patch
-Patch1:		%{name}-makefile.patch
 URL:		http://vegastrike.sourceforge.net
 BuildRequires:	OpenGL-devel-base
 BuildRequires:	SDL_mixer-devel
@@ -68,7 +67,7 @@ wiêc bêdziesz ich potrzebowa³ tylko, kiedy wiesz do czego s³u¿±.
 %prep
 %setup -q -a1 -a2 -n %{name}
 %patch0 -p1
-%patch1 -p1
+sed -i 's#^AC_OUTPUT(#AC_OUTPUT(tools/Makefile #' configure.in
 
 %build
 %{__aclocal}
@@ -76,6 +75,8 @@ wiêc bêdziesz ich potrzebowa³ tylko, kiedy wiesz do czego s³u¿±.
 %{__autoheader}
 %{__automake}
 %configure \
+	--enable-net-threads=posix \
+	--enable-flags="%{rpmcflags}" \
 	--enable-boost-128
 %{__make}
 cd vssetup/src
@@ -90,15 +91,19 @@ rm -rf $RPM_BUILD_ROOT
 	pkgdatadir=%{_datadir}/%{name}/data/objconv \
 	DESTDIR=$RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_bindir},%{_datadir}/%{name}/data}
 install vssetup/src/bin/setup $RPM_BUILD_ROOT%{_bindir}/vssetup
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/vsinstall
-install src/networking/soundserver $RPM_BUILD_ROOT%{_datadir}/%{name}/data
+install src/networking/soundserver $RPM_BUILD_ROOT%{_datadir}/%{name}/data/
+install data/documentation/*.1 $RPM_BUILD_ROOT%{_mandir}/man1/
 
 # Makefiles not created - data must be installed manually
 find data -type d -name CVS \
-	-o -type d -name .xvpics \
+	-o -type d -name '.xvpics' \
 	-o -type f -name 'Makefile*' \
 	-o -type f -name '*~*' \
+	-o -type f -name '*.nsi' \
+	-o -type f -name '.#*' \
 	-o -type f -name 'vsinstall' | xargs rm -rf
 cp -rf data $RPM_BUILD_ROOT%{_datadir}/%{name}
 
@@ -126,6 +131,7 @@ EOF
 %attr(755,root,root) %{_datadir}/%{name}/data/objconv/obj2xml
 %attr(755,root,root) %{_datadir}/%{name}/data/objconv/wcp2xml
 %{_datadir}/%{name}
+%{_mandir}/*/*
 
 %files tools
 %defattr(644,root,root,755)
@@ -134,3 +140,5 @@ EOF
 %attr(755,root,root) %{_bindir}/replace
 %attr(755,root,root) %{_bindir}/trisort
 %attr(755,root,root) %{_bindir}/vegaserver
+%attr(755,root,root) %{_bindir}/vsrextract
+%attr(755,root,root) %{_bindir}/vsrmake
