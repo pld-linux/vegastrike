@@ -1,16 +1,18 @@
 #!/bin/sh
 CURPWD=$PWD
-mkdir $HOME/.vegastrike
+if [ ! -d $HOME/.vegastrike ]; then
+	mkdir $HOME/.vegastrike
+fi
 cd $HOME/.vegastrike
-if cat save.4.x.txt 2> /dev/null ;
+if cat save.4.x.txt > /dev/null 2>&1 ;
 then
 	touch save.4.x.txt;
 else
-	echo "default"> save.4.x.txt ;
+	echo "default" > save.4.x.txt ;
 fi
-cp /usr/share/vegastrike/data/setup.config .
-cp /usr/share/vegastrike/data/.vegastrike/*.m3u .
-cp /usr/share/vegastrike/data/vegastrike.config .
+cp /usr/share/vegastrike/setup.config .
+cp /usr/share/vegastrike/.vegastrike/*.m3u .
+cp /usr/share/vegastrike/vegastrike.config .
 /usr/bin/vssetup
 echo "If you wish to have your own music edit ~/.vegastrike/*.m3u  Each playlist represents a place or situation in Vega Strike"
 cd $CURPWD
