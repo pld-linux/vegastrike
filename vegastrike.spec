@@ -34,6 +34,7 @@ Requires:	glut
 Requires:	libjpeg
 Requires:	libpng
 Requires:	python
+Obsoletes:	vegastrike-tools
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
