@@ -9,8 +9,13 @@ Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 # Source0-md5:	6397c57ca9a70508e820dae3a3309975
 Source1:	http://dl.sourceforge.net/%{name}/%{name}-%{version}_data.tar.gz
 # Source1-md5:	50a7ff3bdf41c0fee66c66d9ee4d15b2
+Patch0:		%{name}-opt.patch
+Patch1:		%{name}-c++.patch
+Patch2:		%{name}-gl.patch
 BuildRequires:	OpenGL-devel
 BuildRequires:	SDL-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	expat-devel
 BuildRequires:	glut-devel
 Requires:	OpenGL
@@ -44,43 +49,49 @@ Ten pakiet zawiera pliki danych dla gry Vega Strike i prosty skrypt
 konfiguracyjny.
 
 %prep
-%setup -q -a 1
+%setup -q -a1
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
-CC=%{__cc}
-CFLAGS="%{rpmcflags} -I/usr/include -I%{_includedir}"
-LDFLAGS="-L%{_libdir} -L/usr/lib"
-export CC CFLAGS LDFLAGS
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+%configure \
+	--disable-sdltest \
+	--with-data-dir=%{_datadir}/%{name} \
+	--with-gl-inc=/usr/X11R6/include \
+	--with-glut-inc=/usr/X11R6/include
 
-./configure --prefix=%{_prefix} --disable-sdltest --with-data-dir=%{_datadir}/%{name} \
-		--with-gl-inc=%{_includedir} --with-glut-inc=%{_includedir}
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} install \
+	bindir=%{_bindir} \
+	pkgdatadir=%{_datadir}/%{name}/objconv \
+	DESTDIR=$RPM_BUILD_ROOT
 
-# Zmieñ nazwê /usr/X11R6/games na /usr/X11R6/share
-# -- mo¿na ³atkê daæ zamiast tego
-mv -f $RPM_BUILD_ROOT%{_prefix}/games $RPM_BUILD_ROOT%{_datadir}
+# Makefiles not created - data must be installed manually
+find %{name}-%{version}_data -type d -name CVS \
+	-o -type d -name .xvpics \
+	-o -type f -name 'Makefile*' | xargs rm -rf
 
-# Skopiuj pliki danych
-# Mo¿na spróbowaæ make install w tym katalogu >> TODO
-cp -rf $RPM_BUILD_DIR/%{name}-%{version}/%{name}-%{version}_data/* $RPM_BUILD_ROOT%{_datadir}/%{name}
-
-# Przenie¶ binarkê do /usr/X11R6/bin
-install -d $RPM_BUILD_ROOT%{_bindir}
-mv -f $RPM_BUILD_ROOT%{_datadir}/%{name}/bin/* $RPM_BUILD_ROOT%{_bindir}/%{name}-%{version}
+cp -rf %{name}-%{version}_data/* $RPM_BUILD_ROOT%{_datadir}/%{name}
 
 # Instalacja skryptu konfiguracyjnego
+# ???
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post data
-echo "Remember to run /usr/X11R6/bin/vegastrike-config"
-echo "After configuration run Vega Strike with: /usr/X11R6/bin/vegastrike"
+# no such file
+#%post data
+#echo "Remember to run /usr/X11R6/bin/vegastrike-config"
+#echo "After configuration run Vega Strike with: /usr/X11R6/bin/vegastrike"
 
 %files
 %defattr(644,root,root,755)
