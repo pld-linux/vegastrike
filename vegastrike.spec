@@ -26,6 +26,7 @@ BuildRequires:	glut-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
+BuildRequires:	libstdc++-devel
 BuildRequires:	perl-base
 BuildRequires:	python-devel
 Requires:	OpenGL
