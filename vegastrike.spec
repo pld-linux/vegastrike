@@ -2,7 +2,7 @@
 # TODO: What about this memleak(?) in 2.6? This game is not playable
 #       on these kernels.
 #
-%define		snap	20040501
+%define		snap	20040611
 Summary:	Vegastrike - a free 3D space fight simulator
 Summary(pl):	Vegastrike - trójwymiarowy symulator lotu
 Name:		vegastrike
@@ -11,11 +11,11 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-source.tgz
-# Source0-md5:	8494b904f435dd662b723018a82ade31
+# Source0-md5:	41b3accf50382ef87c55a44985cfe94d
 Source1:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-data.tgz
-# Source1-md5:	4353e1234eb68ec086ff86af4ae34206
+# Source1-md5:	2b2104502586d357ef5b4e1b68213d32
 Source2:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-setup.tgz
-# Source2-md5:	d1f1d16d4cf3c7e0616efab3a439c44f
+# Source2-md5:	2269ca12013434b982538548bf4e49b6
 Source3:	vsfinalize
 Patch0:		%{name}-accountserver.patch
 URL:		http://vegastrike.sourceforge.net
@@ -95,7 +95,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_bindir},%{_datadir}/%{name}}
 
 # Makefiles not created - data must be installed manually
-find data -type d -name 'CVS' \
+find data4.x -type d -name 'CVS' \
 	-o -type d -name '.xvpics' \
 	-o -type f -name 'Makefile*' \
 	-o -type f -name '*~*' \
@@ -103,13 +103,13 @@ find data -type d -name 'CVS' \
 	-o -type f -name '.#*' \
 	-o -type f -name 'vsinstall' | sed -e "s/'/\\\'/g" | xargs rm -rf
 
-cp -rf data/* $RPM_BUILD_ROOT%{_datadir}/%{name}/
-cp -rf data/.vegastrike $RPM_BUILD_ROOT%{_datadir}/%{name}/
+cp -rf data4.x/* $RPM_BUILD_ROOT%{_datadir}/%{name}/
+cp -rf data4.x/.vegastrike $RPM_BUILD_ROOT%{_datadir}/%{name}/
 
 install vssetup/src/bin/setup $RPM_BUILD_ROOT%{_bindir}/vssetup
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/vsinstall
 install src/networking/soundserver $RPM_BUILD_ROOT%{_datadir}/%{name}/
-install data/documentation/*.1 $RPM_BUILD_ROOT%{_mandir}/man1/
+install data4.x/documentation/*.1 $RPM_BUILD_ROOT%{_mandir}/man1/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
