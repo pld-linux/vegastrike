@@ -7,11 +7,10 @@ License:	GPL
 Group:		X11/Applications/Games
 Source0:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Source1:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}_data.tar.gz
-BuildRequires:	SDL-devel, XFree86-OpenGL-devel, glut-devel, expat
 BuildRequires:	OpenGL-devel
-BuildRequires:	glut-devel
 BuildRequires:	SDL-devel
 BuildRequires:  expat-devel
+BuildRequires:	glut-devel
 Requires:	OpenGL
 Requires:	%{name}-data = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
