@@ -6,7 +6,9 @@ Release:	2
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+# Source0-md5:	6397c57ca9a70508e820dae3a3309975
 Source1:	http://dl.sourceforge.net/%{name}/%{name}-%{version}_data.tar.gz
+# Source1-md5:	50a7ff3bdf41c0fee66c66d9ee4d15b2
 BuildRequires:	OpenGL-devel
 BuildRequires:	SDL-devel
 BuildRequires:	expat-devel
