@@ -2,11 +2,11 @@
 CURPWD=$PWD
 mkdir $HOME/.vegastrike
 cd $HOME/.vegastrike
-if cat save.4.x.txt ;
+if cat save.4.x.txt 2> /dev/null ;
 then
-touch save.4.x.txt;
+	touch save.4.x.txt;
 else
-echo "default"> save.4.x.txt ;
+	echo "default"> save.4.x.txt ;
 fi
 cp /usr/share/vegastrike/data/setup.config .
 cp /usr/share/vegastrike/data/.vegastrike/*.m3u .
