@@ -61,11 +61,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
-# Zmieñ nazwê /usr/X11R6/games na /usr/X11R6/share 
+# Zmieñ nazwê /usr/X11R6/games na /usr/X11R6/share
 # -- mo¿na ³atkê daæ zamiast tego
 mv -f $RPM_BUILD_ROOT%{_prefix}/games $RPM_BUILD_ROOT/%{_datadir}
 
-# Skopiuj pliki danych 
+# Skopiuj pliki danych
 # Mo¿na spróbowaæ make install w tym katalogu >> TODO
 cp -rf $RPM_BUILD_DIR/%{name}-%{version}/%{name}-%{version}_data/* $RPM_BUILD_ROOT%{_datadir}/%{name}
 
