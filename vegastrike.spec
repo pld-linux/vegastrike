@@ -53,7 +53,7 @@ LDFLAGS="-L%{_libdir} -L/usr/lib"
 export CC CFLAGS LDFLAGS
 
 ./configure --prefix=%{_prefix} --disable-sdltest --with-data-dir=%{_datadir}/%{name} \
-	    --with-gl-inc=%{_includedir} --with-glut-inc=%{_includedir}
+		--with-gl-inc=%{_includedir} --with-glut-inc=%{_includedir}
 %{__make}
 
 %install
@@ -63,7 +63,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # Zmieñ nazwê /usr/X11R6/games na /usr/X11R6/share
 # -- mo¿na ³atkê daæ zamiast tego
-mv -f $RPM_BUILD_ROOT%{_prefix}/games $RPM_BUILD_ROOT/%{_datadir}
+mv -f $RPM_BUILD_ROOT%{_prefix}/games $RPM_BUILD_ROOT%{_datadir}
 
 # Skopiuj pliki danych
 # Mo¿na spróbowaæ make install w tym katalogu >> TODO
