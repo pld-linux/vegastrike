@@ -5,8 +5,6 @@ Version:	0.1.0
 Release:	1
 License:	GPL
 Group:		X11/Applications/Games
-Group(de):	X11/Applikationen/Spiele
-Group(pl):	X11/Aplikacje/Gry
 Source0:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Source1:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}_data.tar.gz
 BuildRequires:	SDL-devel, XFree86-OpenGL-devel, glut-devel, expat
@@ -35,8 +33,6 @@ rzeczywistego korzystaj±ca z OpenGL, rozwijana pod Linuksa i Windows.
 Summary:	Vegastrike data files
 Summary(pl):	Dane dla Vegastrike
 Group:		X11/Applications/Games
-Group(de):	X11/Applikationen/Spiele
-Group(pl):	X11/Aplikacje/Gry
 Requires:	%{name} = %{version}
 
 %description data
