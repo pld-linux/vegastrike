@@ -1,4 +1,4 @@
-%define		snap	20040731
+%define		snap	20040904
 Summary:	Vegastrike - a free 3D space fight simulator
 Summary(pl):	Vegastrike - trójwymiarowy symulator lotu
 Name:		vegastrike
@@ -8,11 +8,11 @@ Epoch:		1
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-source.tgz
-# Source0-md5:	1d101f42822d06e94382e2eb993b4c41
+# Source0-md5:	464f7ed55f30d7b03caf788075a9cff1
 Source1:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-data.tgz
-# Source1-md5:	bb0d20f87c985d03db733f5d6b089d11
+# Source1-md5:	b8cfb38124ec20ea128e88802faba948
 Source2:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-setup.tgz
-# Source2-md5:	09a83dfa5e175158d4c445d007279657
+# Source2-md5:	f60053ed2f4a394f1b511fb4e156049c
 Source3:	vsfinalize
 Patch0:		%{name}-accountserver.patch
 URL:		http://vegastrike.sourceforge.net
@@ -135,12 +135,12 @@ EOF
 %{_datadir}/%{name}
 %{_mandir}/*/*
 
-%files tools
-%defattr(644,root,root,755)
+#%files tools
+#%defattr(644,root,root,755)
 #%attr(755,root,root) %{_bindir}/accountserver
-%attr(755,root,root) %{_bindir}/asteroidgen
-%attr(755,root,root) %{_bindir}/replace
-%attr(755,root,root) %{_bindir}/trisort
-%attr(755,root,root) %{_bindir}/vegaserver
-%attr(755,root,root) %{_bindir}/vsrextract
-%attr(755,root,root) %{_bindir}/vsrmake
+#%attr(755,root,root) %{_bindir}/asteroidgen
+#%attr(755,root,root) %{_bindir}/replace
+#%attr(755,root,root) %{_bindir}/trisort
+#%attr(755,root,root) %{_bindir}/vegaserver
+#%attr(755,root,root) %{_bindir}/vsrextract
+#%attr(755,root,root) %{_bindir}/vsrmake
