@@ -1,0 +1,57 @@
+--- vegastrike-0.1.0/src/cmd/ai/navigation.cpp.orig	Sat Oct 27 01:25:02 2001
++++ vegastrike-0.1.0/src/cmd/ai/navigation.cpp	Thu Aug 28 11:52:55 2003
+@@ -83,9 +83,9 @@
+ void MoveTo::Execute(){
+   Vector local_location (parent->UpCoordinateLevel(parent->GetVelocity()));
+   //local location is ued for storing the last velocity;
+-  terminatingX += (copysign(1.0,local_location.i)!=copysign(1.0,last_velocity.i)||(!local_location.i));
+-  terminatingY += (copysign(1.0,local_location.j)!=copysign(1.0,last_velocity.j)||(!local_location.j));
+-  terminatingZ += (copysign(1.0,local_location.k)!=copysign(1.0,last_velocity.k)||(!local_location.k));
++  terminatingX += (copysign(1.0f,local_location.i)!=copysign(1.0f,last_velocity.i)||(!local_location.i));
++  terminatingY += (copysign(1.0f,local_location.j)!=copysign(1.0f,last_velocity.j)||(!local_location.j));
++  terminatingZ += (copysign(1.0f,local_location.k)!=copysign(1.0f,last_velocity.k)||(!local_location.k));
+ 
+   last_velocity = local_location;
+   local_location = targetlocation - parent->Position();
+@@ -179,8 +179,8 @@
+ }
+ void ChangeHeading::Execute() {
+   Vector local_heading (parent->UpCoordinateLevel(parent->GetAngularVelocity()));
+-  terminatingX += (copysign(1.0,local_heading.i)!=copysign(1.0,last_velocity.i)||(!local_heading.i));
+-  terminatingY += (copysign(1.0,local_heading.j)!=copysign(1.0,last_velocity.j)||(!local_heading.j));
++  terminatingX += (copysign(1.0f,local_heading.i)!=copysign(1.0f,last_velocity.i)||(!local_heading.i));
++  terminatingY += (copysign(1.0f,local_heading.j)!=copysign(1.0f,last_velocity.j)||(!local_heading.j));
+   last_velocity = local_heading;
+   local_heading = parent->ToLocalCoordinates (final_heading-parent->Position());
+   if (done) return ;
+--- vegastrike-0.1.0/src/hashtable_3d.h.orig	Fri Oct 26 21:56:36 2001
++++ vegastrike-0.1.0/src/hashtable_3d.h	Thu Aug 28 12:11:22 2003
+@@ -175,7 +175,7 @@
+ 	    while (removal!=table[x][y][z].end()) {
+ 	      removal = std::find (table[x][y][z].begin(),table[x][y][z].end(),objectToKill);
+ 	      if (removal!=table[x][y][z].end()) {
+-		retval = removal;
++		retval = removal.base();
+ 		table[x][y][z].erase(removal);
+ 	      }
+ 	    }
+@@ -191,7 +191,7 @@
+       while (removal!=hugeobjects.end()) {
+ 		  removal = std::find (hugeobjects.begin(),hugeobjects.end(),objectToKill);
+ 	if (removal!=hugeobjects.end()) {
+-	  retval = removal;
++	  retval = removal.base();
+ 	  hugeobjects.erase(removal);
+ 	}
+       }
+--- vegastrike-0.1.0/src/gldrv/gl_light_state.cpp.orig	Fri Oct 26 07:06:37 2001
++++ vegastrike-0.1.0/src/gldrv/gl_light_state.cpp	Thu Aug 28 13:00:08 2003
+@@ -13,7 +13,7 @@
+ }
+ 
+ int gfx_light::lightNum() {
+-  int tmp =  (this-_llights->begin());
++  int tmp =  (this-_llights->begin().base());
+   assert (tmp>=0&&tmp<(int)_llights->size());
+   //  assert (&(*_llights)[GLLights[target].index]==this);
+   return tmp;
