@@ -9,7 +9,7 @@ Source0:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Source1:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}_data.tar.gz
 BuildRequires:	OpenGL-devel
 BuildRequires:	SDL-devel
-BuildRequires:  expat-devel
+BuildRequires:	expat-devel
 BuildRequires:	glut-devel
 Requires:	OpenGL
 Requires:	%{name}-data = %{version}
