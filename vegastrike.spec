@@ -74,9 +74,6 @@ cp -rf $RPM_BUILD_DIR/%{name}-%{version}/%{name}-%{version}_data/* $RPM_BUILD_RO
 install -d $RPM_BUILD_ROOT%{_bindir}
 mv -f $RPM_BUILD_ROOT%{_datadir}/%{name}/bin/* $RPM_BUILD_ROOT%{_bindir}/%{name}-%{version}
 
-# Spakuj dokumentacjê
-gzip -9nf README
-
 # Instalacja skryptu konfiguracyjnego
 
 %clean
@@ -88,7 +85,7 @@ echo "After configuration run Vega Strike with: /usr/X11R6/bin/vegastrike"
 
 %files
 %defattr(644,root,root,755)
-%doc README.gz
+%doc README
 %attr(755,root,root) %{_bindir}/*
 
 %files data
