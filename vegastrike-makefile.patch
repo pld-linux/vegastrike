@@ -1,9 +1,0 @@
-diff -urN vegastrike.orig/Makefile.am vegastrike/Makefile.am
---- vegastrike.orig/Makefile.am	2003-09-21 03:14:39.000000000 +0200
-+++ vegastrike/Makefile.am	2004-04-30 01:41:36.711053344 +0200
-@@ -1,4 +1,4 @@
--SUBDIRS = src objconv launcher tools
-+SUBDIRS = src objconv launcher
- 
- EXTRA_DIST =						\
- 	vegastrike.dsp					\
