@@ -77,6 +77,7 @@ sed -i 's#^AC_OUTPUT(#AC_OUTPUT(tools/Makefile #' configure.in
 %configure \
 	--enable-net-threads=posix \
 	--enable-flags="%{rpmcflags}" \
+	--with-data-dir="%{_datadir}/%{name}" \
 	--enable-boost-128
 %{__make}
 cd vssetup/src
@@ -88,14 +89,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	bindir=%{_bindir} \
-	pkgdatadir=%{_datadir}/%{name}/data/objconv \
+	pkgdatadir=%{_datadir}/%{name}/objconv \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_bindir},%{_datadir}/%{name}/data}
-install vssetup/src/bin/setup $RPM_BUILD_ROOT%{_bindir}/vssetup
-install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/vsinstall
-install src/networking/soundserver $RPM_BUILD_ROOT%{_datadir}/%{name}/data/
-install data/documentation/*.1 $RPM_BUILD_ROOT%{_mandir}/man1/
+install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_bindir},%{_datadir}}
 
 # Makefiles not created - data must be installed manually
 find data -type d -name CVS \
@@ -106,6 +103,11 @@ find data -type d -name CVS \
 	-o -type f -name '.#*' \
 	-o -type f -name 'vsinstall' | xargs rm -rf
 cp -rf data $RPM_BUILD_ROOT%{_datadir}/%{name}
+
+install vssetup/src/bin/setup $RPM_BUILD_ROOT%{_bindir}/vssetup
+install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/vsinstall
+install src/networking/soundserver $RPM_BUILD_ROOT%{_datadir}/%{name}/
+install data/documentation/*.1 $RPM_BUILD_ROOT%{_mandir}/man1/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -126,10 +128,10 @@ EOF
 %attr(755,root,root) %{_bindir}/vsinstall
 %attr(755,root,root) %{_bindir}/vssetup
 %attr(755,root,root) %{_bindir}/vslauncher
-%attr(755,root,root) %{_datadir}/%{name}/data/soundserver
-%attr(755,root,root) %{_datadir}/%{name}/data/objconv/3ds2xml
-%attr(755,root,root) %{_datadir}/%{name}/data/objconv/obj2xml
-%attr(755,root,root) %{_datadir}/%{name}/data/objconv/wcp2xml
+%attr(755,root,root) %{_datadir}/%{name}/soundserver
+%attr(755,root,root) %{_datadir}/%{name}/objconv/3ds2xml
+%attr(755,root,root) %{_datadir}/%{name}/objconv/obj2xml
+%attr(755,root,root) %{_datadir}/%{name}/objconv/wcp2xml
 %{_datadir}/%{name}
 %{_mandir}/*/*
 
