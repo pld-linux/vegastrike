@@ -9,7 +9,7 @@ diff -urN vegastrike-0.4.1-installer.orig/vegastrike/src/gldrv/gl_globals.h vega
  #include <queue>
  
  using namespace std;
-diff -urN vegastrike-0.4.1-installer.orig/vegastrike/src/gldrv/gl_init.h vegastrike-0.4.1-installer/vegastrike/src/gldrv/gl_init.h
+diff -urN vegastrike.orig/src/gldrv/gl_init.h vegastrike/src/gldrv/gl_init.h
 --- vegastrike.orig/src/gldrv/gl_init.h	2002-11-23 06:46:11.000000000 +0100
 +++ vegastrike/src/gldrv/gl_init.h	2004-04-29 23:34:51.092283144 +0200
 @@ -27,6 +27,7 @@
