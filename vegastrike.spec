@@ -2,7 +2,7 @@ Summary:	Vegastrike - a free 3D space fight simulator
 Summary(pl):	Vegastrike - trójwymiarowy symulator lotu
 Name:		vegastrike
 Version:	0.1.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
@@ -11,6 +11,7 @@ BuildRequires:	SDL-devel, XFree86-OpenGL-devel, glut-devel, expat
 BuildRequires:	OpenGL-devel
 BuildRequires:	glut-devel
 BuildRequires:	SDL-devel
+BuildRequires:  expat-devel
 Requires:	OpenGL
 Requires:	%{name}-data = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
