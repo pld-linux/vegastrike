@@ -11,11 +11,11 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-source.tgz
-# Source0-md5:	3e3fd9326e4ddb2f3a994c9f73317383
+# Source0-md5:	8494b904f435dd662b723018a82ade31
 Source1:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-data.tgz
-# Source1-md5:	ba139fa2da7a04b19d485677191855ea
+# Source1-md5:	4353e1234eb68ec086ff86af4ae34206
 Source2:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-setup.tgz
-# Source2-md5:	eb910736dad4c2e84c0d016023fa3a5f
+# Source2-md5:	d1f1d16d4cf3c7e0616efab3a439c44f
 Source3:	vsfinalize
 Patch0:		%{name}-accountserver.patch
 URL:		http://vegastrike.sourceforge.net
