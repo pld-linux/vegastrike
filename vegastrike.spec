@@ -1,21 +1,19 @@
 #
-# TODO: What about this memleak(?) in 2.6? This game is not playable
-#       on these kernels.
-#
-%define		snap	20040611
+%define		snap	20040731
 Summary:	Vegastrike - a free 3D space fight simulator
 Summary(pl):	Vegastrike - trójwymiarowy symulator lotu
 Name:		vegastrike
-Version:	0.4.2_%{snap}
-Release:	1
+Version:	0.4.1
+Epoch:		1
+Release:	0.%{snap}.1
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-source.tgz
-# Source0-md5:	41b3accf50382ef87c55a44985cfe94d
+# Source0-md5:	1d101f42822d06e94382e2eb993b4c41
 Source1:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-data.tgz
-# Source1-md5:	2b2104502586d357ef5b4e1b68213d32
+# Source1-md5:	bb0d20f87c985d03db733f5d6b089d11
 Source2:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-setup.tgz
-# Source2-md5:	2269ca12013434b982538548bf4e49b6
+# Source2-md5:	09a83dfa5e175158d4c445d007279657
 Source3:	vsfinalize
 Patch0:		%{name}-accountserver.patch
 URL:		http://vegastrike.sourceforge.net
