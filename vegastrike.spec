@@ -1,11 +1,10 @@
-#
 %define		snap	20040731
 Summary:	Vegastrike - a free 3D space fight simulator
 Summary(pl):	Vegastrike - trójwymiarowy symulator lotu
 Name:		vegastrike
 Version:	0.4.1
-Epoch:		1
 Release:	0.%{snap}.1
+Epoch:		1
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-source.tgz
@@ -17,23 +16,23 @@ Source2:	ftp://distfiles.pld-linux.org/src/%{name}-%{snap}-setup.tgz
 Source3:	vsfinalize
 Patch0:		%{name}-accountserver.patch
 URL:		http://vegastrike.sourceforge.net
+BuildRequires:	OpenAL-devel
 BuildRequires:	OpenGL-devel-base
 BuildRequires:	SDL_mixer-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	expat-devel
 BuildRequires:	glut-devel
-BuildRequires:	libpng-devel
-BuildRequires:	libjpeg-devel
-BuildRequires:	OpenAL-devel
-BuildRequires:	python-devel
-BuildRequires:	perl-base
 BuildRequires:	gtk+-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	libpng-devel
+BuildRequires:	perl-base
+BuildRequires:	python-devel
 Requires:	OpenGL
 Requires:	SDL_mixer
 Requires:	glut
-Requires:	libpng
 Requires:	libjpeg
+Requires:	libpng
 Requires:	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -54,7 +53,7 @@ Ta gra to kombinacje starej serii elite/frontier i privateera.
 Summary:	Vegastrike tools
 Summary(pl):	Narzêdzia dla Vegastrike
 Group:		X11/Applications/Games
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description tools
 This provides tools for Vega Strike game. They are not needed to play the
