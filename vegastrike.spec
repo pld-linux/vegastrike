@@ -30,6 +30,7 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	OpenAL-devel
 BuildRequires:	python-devel
 BuildRequires:	perl-base
+BuildRequires:	gtk+-devel
 Requires:	OpenGL
 Requires:	SDL_mixer
 Requires:	glut
