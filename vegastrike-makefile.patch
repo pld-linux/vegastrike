@@ -1,4 +1,4 @@
-diff -urN vegastrike.orig/Makefile.am vegastrike/Makefile.am
+diff -urN vegastrike-0.4.1-installer.orig/vegastrike/Makefile.am vegastrike-0.4.1-installer/vegastrike/Makefile.am
 --- vegastrike.orig/Makefile.am	2003-09-21 03:14:39.000000000 +0200
 +++ vegastrike/Makefile.am	2004-04-30 01:41:36.711053344 +0200
 @@ -1,4 +1,4 @@
