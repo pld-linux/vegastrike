@@ -1,6 +1,6 @@
 %define		snap	20040904
 Summary:	Vegastrike - a free 3D space fight simulator
-Summary(pl.UTF-8):   Vegastrike - trójwymiarowy symulator lotu
+Summary(pl.UTF-8):	Vegastrike - trójwymiarowy symulator lotu
 Name:		vegastrike
 Version:	0.4.1
 Release:	0.%{snap}.1
@@ -53,7 +53,7 @@ Ta gra to kombinacje starej serii elite/frontier i privateera.
 
 %package tools
 Summary:	Vegastrike tools
-Summary(pl.UTF-8):   Narzędzia dla Vegastrike
+Summary(pl.UTF-8):	Narzędzia dla Vegastrike
 Group:		X11/Applications/Games
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
