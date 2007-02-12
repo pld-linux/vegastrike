@@ -1,6 +1,6 @@
 %define		snap	20040904
 Summary:	Vegastrike - a free 3D space fight simulator
-Summary(pl):	Vegastrike - trójwymiarowy symulator lotu
+Summary(pl.UTF-8):   Vegastrike - trÃ³jwymiarowy symulator lotu
 Name:		vegastrike
 Version:	0.4.1
 Release:	0.%{snap}.1
@@ -46,14 +46,14 @@ being developed for Linux and Windows in 3D OpenGL... With stunning
 Graphics reminiscent of Wing Commander, Vega Strike will be a hit for
 all gamers!!! It's combination of old frontier/elite series and privateer.
 
-%description -l pl
+%description -l pl.UTF-8
 Vega Strike to interaktyny symulator lotu / strategia czasu
-rzeczywistego korzystaj±ca z OpenGL, rozwijana pod Linuksa i Windows.
+rzeczywistego korzystajÄ…ca z OpenGL, rozwijana pod Linuksa i Windows.
 Ta gra to kombinacje starej serii elite/frontier i privateera.
 
 %package tools
 Summary:	Vegastrike tools
-Summary(pl):	Narzêdzia dla Vegastrike
+Summary(pl.UTF-8):   NarzÄ™dzia dla Vegastrike
 Group:		X11/Applications/Games
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -61,9 +61,9 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 This provides tools for Vega Strike game. They are not needed to play the
 game, so you will need them only if you know what they are doing.
 
-%description tools -l pl
-Ten pakiet zawiera narzêdzia do gry Vega Strike. Nie s± one konieczne by graæ,
-wiêc bêdziesz ich potrzebowa³ tylko, kiedy wiesz do czego s³u¿±.
+%description tools -l pl.UTF-8
+Ten pakiet zawiera narzÄ™dzia do gry Vega Strike. Nie sÄ… one konieczne by graÄ‡,
+wiÄ™c bÄ™dziesz ich potrzebowaÅ‚ tylko, kiedy wiesz do czego sÅ‚uÅ¼Ä….
 
 %prep
 %setup -q -a1 -a2 -n %{name}
