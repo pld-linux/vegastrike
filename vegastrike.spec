@@ -67,7 +67,7 @@ więc będziesz ich potrzebował tylko, kiedy wiesz do czego służą.
 
 %prep
 %setup -q -a1 -a2 -n %{name}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__aclocal}
